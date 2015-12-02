@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+//using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
 using System.Drawing;
 
@@ -27,17 +27,19 @@ namespace img2excel
             Workbook book = @excelApp.Workbooks.Add();
             @sheet = (Worksheet)book.Worksheets.Item[1];
             @sheet.Cells.Select();
-            @excelApp.Selection.ColumnWidth = 1;
-            @excelApp.Selection.RowHeight = 10;
+            ((Range)@excelApp.Selection).ColumnWidth = 1;
+            ((Range)@excelApp.Selection).RowHeight = 10;
         }
         public void draw(int x,int y,Color color)
         {
             try{
                 @excelApp.EnableEvents = false;
                 Range range = (Range)@sheet.Cells[y + 1, x + 1];
-                range.Interior.Color = color;
-	        }catch(Exception e){
-                Console.Error.WriteLine("Error while drawing x={0} y={1}.\n{2}\n{3}", x, y);
+                //range.Interior.Color = color;
+                range.Interior.Color = System.Drawing.ColorTranslator.ToOle(color);
+            }
+            catch(Exception e){
+                Console.Error.WriteLine("Error while drawing x={0} y={1}.\n{2}\n{3}", x, y, e.Message, e.StackTrace);
                 throw e;
             }finally{
                 @excelApp.EnableEvents = true;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+//using System.Threading.Tasks;
 using System.Drawing;
 
 namespace img2excel
@@ -43,7 +43,7 @@ namespace img2excel
         }
         private static void usage()
         {
-            Console.WriteLine("img2excel.exe imagefile");
+            Console.WriteLine("Usage)\nimg2excel.exe imagefile");
         }
     }
 }
